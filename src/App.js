@@ -1,12 +1,18 @@
 import React from "react";
-import FirewallTest from "./components/FirewallTest";
+import FirewallForm from "./components/FirewallForm";
+import "./App.css";
 
-const App = () => {
+function App() {
   return (
-    <div>
-      <FirewallTest />
+    <div className="App">
+      <header className="App-header">
+        <h1>Firewall Module Demo</h1>
+      </header>
+      <main>
+        <FirewallForm />
+      </main>
     </div>
   );
-};
+}
 
 export default App;
