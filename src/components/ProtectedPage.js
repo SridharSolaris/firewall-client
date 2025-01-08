@@ -4,6 +4,8 @@ import { validateIP } from "../services/firewallService";
 const ProtectedPage = () => {
   const [isBlocked, setIsBlocked] = useState(false);
   const [userIP, setUserIP] = useState(null);
+  const [loading, setLoading] = useState(true); // Loading state
+  const [error, setError] = useState(null); // Error state
 
   useEffect(() => {
     const fetchUserIP = async () => {
@@ -15,6 +17,7 @@ const ProtectedPage = () => {
         return data.ip;
       } catch (error) {
         console.error("Error fetching user IP:", error);
+        setError("Unable to fetch IP");
         return null;
       }
     };
@@ -30,11 +33,22 @@ const ProtectedPage = () => {
         }
       } catch (error) {
         console.error("Error validating IP:", error);
+        setError("Unable to validate IP");
+      } finally {
+        setLoading(false); // Set loading to false after the check is done
       }
     };
 
     checkIP();
   }, []);
+
+  if (loading) {
+    return <h1>Loading...</h1>; // Loading state
+  }
+
+  if (error) {
+    return <h1>{error}</h1>; // Error state
+  }
 
   if (isBlocked) {
     return <h1>Access Denied</h1>;
