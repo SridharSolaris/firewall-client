@@ -27,6 +27,7 @@ const ProtectedPage = () => {
         const ip = await fetchUserIP(); // Get the user's IP dynamically
         if (ip) {
           const result = await validateIP(ip); // Validate the IP with the backend
+          console.log(result);
           if (result.blocked) {
             setIsBlocked(true);
           }
