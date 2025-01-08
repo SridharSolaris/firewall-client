@@ -1,4 +1,4 @@
-const FIREWALL_API_URL = "https://localhost:3000";
+const FIREWALL_API_URL = process.env.REACT_APP_FIREWALL_API_URL;
 
 export async function validateIP(ip) {
   const response = await fetch(`${FIREWALL_API_URL}/validate`, {
