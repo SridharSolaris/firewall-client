@@ -9,7 +9,7 @@ const ProtectedPage = () => {
     const fetchUserIP = async () => {
       try {
         // Fetch the user's IP using an external IP service
-        const response = await fetch("https://api64.ipify.org?format=json");
+        const response = await fetch("https://api.ipify.org?format=json");
         const data = await response.json();
         setUserIP(data.ip);
         return data.ip;
